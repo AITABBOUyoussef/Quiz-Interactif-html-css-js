@@ -1,7 +1,8 @@
-
 const questionElement = document.getElementById("question");
 const answerButtons = document.getElementById("answer-buttons");
 const nextButton = document.getElementById("next-btn");
+const timeText = document.getElementById("time-left");
+
 const questions = [
     {
         question: "2+2=?",
@@ -79,30 +80,32 @@ const questions = [
 
 let currentQuestionIndex = 0;
 let score = 0;
+let timer;
+let timeLeft = 10;
+
 function startQuiz() {
     currentQuestionIndex = 0;
     score = 0;
     nextButton.innerHTML = "Suivant";
+    nextButton.onclick = null;
     showQuestion();
 }
 
 
 function showQuestion() {
     resetState();
+    startTimer();
 
     let currentQuestion = questions[currentQuestionIndex];
     let questionNo = currentQuestionIndex + 1;
 
-    // Hna kanbdlo lktba li f <h2>
     questionElement.innerHTML = questionNo + ". " + currentQuestion.question;
-
 
     currentQuestion.answers.forEach(answer => {
         const button = document.createElement("button");
         button.innerHTML = answer.text;
         button.classList.add("btn");
         answerButtons.appendChild(button);
-
 
         if(answer.correct) {
             button.dataset.correct = answer.correct;
@@ -116,12 +119,41 @@ function showQuestion() {
 function resetState() {
     nextButton.style.display = "none";
 
+    clearInterval(timer);
+
     while(answerButtons.firstChild) {
         answerButtons.removeChild(answerButtons.firstChild);
     }
 }
 
+function startTimer() {
+    timeLeft = 10;
+    if(timeText) timeText.innerHTML = timeLeft;
+
+    timer = setInterval(() => {
+        timeLeft--;
+        if(timeText) timeText.innerHTML = timeLeft;
+
+        if (timeLeft <= 0) {
+            clearInterval(timer);
+            handleTimeOut();
+        }
+    }, 1000);
+}
+
+function handleTimeOut() {
+    Array.from(answerButtons.children).forEach(button => {
+        if(button.dataset.correct === "true") {
+            button.classList.add("correct");
+        }
+        button.disabled = true;
+    });
+    nextButton.style.display = "block";
+}
+
 function selectAnswer(e) {
+    clearInterval(timer);
+
     const selectedBtn = e.target;
     const isCorrect = selectedBtn.dataset.correct === "true";
 
@@ -144,6 +176,7 @@ function selectAnswer(e) {
 
 
 nextButton.addEventListener("click", () => {
+    if(nextButton.innerHTML === "Recommencer") return;
     currentQuestionIndex++;
     if(currentQuestionIndex < questions.length) {
         showQuestion();
@@ -154,7 +187,10 @@ nextButton.addEventListener("click", () => {
 
 
 function showScore() {
-    resetState(); // Mssh koulchi
+    resetState();
+
+    if(timeText) timeText.innerHTML = "--";
+
     questionElement.innerHTML = `terminee! votre Score : ${score} / ${questions.length}`;
     nextButton.innerHTML = "Recommencer";
     nextButton.style.display = "block";

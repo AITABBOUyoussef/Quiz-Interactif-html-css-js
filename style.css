@@ -1,38 +1,11 @@
-.header-container {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 10px 5%;
-  background-color: #f6f0f0;
-  border-bottom: 1px solid #ddd;
-}
-.logo {
-  color: rgb(228, 99, 228);     
-  font-weight: 600;
-  font-size: 1.5rem;
-}
-.logo:hover {
-  color: rgb(200, 80, 200); 
-  cursor: pointer;
-}
-.signup-btn {
-  background-color: rgb(228, 99, 228); 
-  color: white;                        
-  border: none;
-  padding: 8px 16px;
-  border-radius: 6px;
-  font-size: 1rem;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
 
-
-.signup-btn:hover {
-  background-color: rgb(200, 80, 200); 
-
+.timer-container {
+    text-align: right;
+    font-weight: bold;
+    font-size: 1.2rem;
+    color: #333;
+    margin-bottom: 10px;
 }
-
-
 .app {
     background: #fff;
     width: 90%;
@@ -61,12 +34,12 @@
 
 
 .correct {
-    background: #9aeabc;
+    background: #9aeabc !important;
     border-color: #9aeabc;
 }
 
 .incorrect {
-    background: #ff9393;
+    background: #ff9393 !important;
     border-color: #ff9393;
 }
 
