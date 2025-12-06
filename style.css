@@ -1,30 +1,84 @@
-.timer-container {
-    text-align: right;
-    font-weight: bold;
-    font-size: 1.2rem;
-    color: #333;
-    margin-bottom: 10px;
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f4f4f4;
 }
 
-.app {
+.app-container {
+    display: flex;
+    max-width: 900px;
+    margin: 50px auto;
     background: #fff;
-    width: 90%;
-    max-width: 600px;
-    margin: 100px auto;
     border-radius: 10px;
-    padding: 30px;
+    overflow: hidden;
+    box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+}
+
+.sidebar {
+    width: 150px;
+    background: #333;
+    color: white;
+    padding: 20px;
+}
+
+.sidebar h3 {
+    margin-top: 0;
+    margin-bottom: 15px;
+    font-size: 1.1rem;
+}
+
+.category-button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    background: #555; 
+    border: none;
+    color: white;
+    cursor: pointer;
+    border-radius: 5px;
+    text-align: left;
+}
+
+.category-button.selected {
+    background: #222;
+}
+
+.category-button:hover {
+    background: #444;
+}
+
+
+.quiz-container {
+    flex: 1;
+    padding: 20px 30px;
     text-align: center;
 }
 
+
+.timer-container {
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+
+.totalscore {
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+
 .btn {
-    background: #fff;
+    display: block;
     width: 100%;
-    border: 1px solid #222;
     padding: 10px;
-    margin: 10px 0;
-    text-align: left;
+    margin: 8px 0;
+    border: 1px solid #222;
+    border-radius: 5px;
+    background: #fff;
     cursor: pointer;
-    transition: 0.3s;
+    text-align: left;
 }
 
 .btn:hover:not([disabled]) {
@@ -32,13 +86,26 @@
     color: #fff;
 }
 
-
 .correct {
     background: #9aeabc !important;
-    border-color: #9aeabc;
 }
 
 .incorrect {
     background: #ff9393 !important;
-    border-color: #ff9393;
+}
+
+
+@media (max-width: 600px) {
+    .app-container {
+        flex-direction: column;
+    }
+
+    .sidebar {
+        width: 100%;
+        text-align: center;
+    }
+
+    .category-button {
+        text-align: center;
+    }
 }
