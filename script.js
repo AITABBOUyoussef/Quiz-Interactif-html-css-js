@@ -9,6 +9,7 @@ const questions = [
         answers: [
             { text: "4", correct: true },
             { text: "0", correct: false },
+            { text: "6", correct: false }
         ]
     },
     {
@@ -81,7 +82,8 @@ const questions = [
 let currentQuestionIndex = 0;
 let score = 0;
 let timer;
-let timeLeft = 10;
+let timeLeft = 5;
+let questionNo = 0
 
 function startQuiz() {
     currentQuestionIndex = 0;
@@ -89,6 +91,7 @@ function startQuiz() {
     nextButton.innerHTML = "Suivant";
     nextButton.onclick = null;
     showQuestion();
+   
 }
 
 
@@ -97,9 +100,9 @@ function showQuestion() {
     startTimer();
 
     let currentQuestion = questions[currentQuestionIndex];
-    let questionNo = currentQuestionIndex + 1;
+    questionNo = currentQuestionIndex + 1;
 
-    questionElement.innerHTML = questionNo + ". " + currentQuestion.question;
+    questionElement.innerHTML = questionNo + " .  " + currentQuestion.question;
 
     currentQuestion.answers.forEach(answer => {
         const button = document.createElement("button");
@@ -112,13 +115,14 @@ function showQuestion() {
         }
 
         button.addEventListener("click", selectAnswer);
+        progressing()
     });
 }
 
 
 function resetState() {
     nextButton.style.display = "none";
-
+    
     clearInterval(timer);
 
     while(answerButtons.firstChild) {
@@ -135,8 +139,10 @@ function startTimer() {
         if(timeText) timeText.innerHTML = timeLeft;
 
         if (timeLeft <= 0) {
+            currentQuestionIndex++
             clearInterval(timer);
             handleTimeOut();
+            
         }
     }, 1000);
 }
@@ -149,20 +155,25 @@ function handleTimeOut() {
         button.disabled = true;
     });
     nextButton.style.display = "block";
+    
 }
 
 function selectAnswer(e) {
     clearInterval(timer);
-
+    
     const selectedBtn = e.target;
     const isCorrect = selectedBtn.dataset.correct === "true";
 
     if(isCorrect) {
         selectedBtn.classList.add("correct");
         score++;
+        
+        
     } else {
         selectedBtn.classList.add("incorrect");
+        
     }
+
 
     Array.from(answerButtons.children).forEach(button => {
         if(button.dataset.correct === "true") {
@@ -172,6 +183,7 @@ function selectAnswer(e) {
     });
 
     nextButton.style.display = "block";
+    
 }
 
 
@@ -200,4 +212,18 @@ function showScore() {
 }
 
 
+
+function progressing() {
+    const progressBar = document.getElementsByClassName("progress-bar")[0];
+
+    
+    let progressPercentage =  (questionNo * 100) / questions.length;
+
+    progressBar.style.setProperty("--wid", progressPercentage);
+}
+
+
+
+
 startQuiz();
+

@@ -8,10 +8,15 @@ margin:0%;
 .timer-container {
     text-align: right;
     font-weight: bold;
-    font-size: 1.2rem;
-    color: #333;
-    margin-bottom: 10px;
+    font-size: 12rem;
+    color: #a80239;
+    background: null;
+    display: inline-block;
+    float: right;
+    margin-right: 1.2em;
+    margin-top: -0.6em;
 }
+
 .header-container {
   display: flex;
   justify-content: space-between;
@@ -55,19 +60,20 @@ margin:0%;
 }
 
 .btn {
-    background: #fff;
+    background: #ffffff;
     width: 100%;
-    border: 1px solid #222;
+    border: 2px solid #222;
     padding: 10px;
     margin: 10px 0;
     text-align: left;
     cursor: pointer;
-    transition: 0.3s;
+    transition: 1s;
 }
 
-.btn:hover:not([disabled]) {
-    background: #222;
-    color: #fff;
+.btn:hover:not([
+  disabled]) {
+    background: #df5f5f;
+    color: #040000;
 }
 
 
@@ -77,18 +83,32 @@ margin:0%;
 }
 
 .incorrect {
-    background: #ff9393 !important;
-    border-color: #ff9393;
+    background: #e96262 !important;
+    border-color: #d73131;
 }
 
 .progress-bar{
+  position: relative;
     width: 800px;
     height: 2.5em;
     background-color: #e1f6c1;
     border: 3px solid rgb(226, 122, 218);
-    border-radius: 20px;
+    border-radius: 3em;
     margin: 40px auto;
-
+}
+.progress-bar::before{
+content : attr(data-label);
+background-color: rgb(110, 255, 110);
+align-items: center;
+position: absolute;
+left:2px;
+top: 0.1em;
+bottom: 0.1em;
+width : calc(var(--wid, 0) * 1%);
+min-width: 1em;
+max-width: 100%;
+border-radius: 15px  ;
+padding: 1px 0px;
 }
 
 
