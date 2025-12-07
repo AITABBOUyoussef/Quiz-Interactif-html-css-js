@@ -82,7 +82,7 @@ const questions = [
 let currentQuestionIndex = 0;
 let score = 0;
 let timer;
-let timeLeft = 5;
+let timeLeft = 9;
 let questionNo = 0
 
 function startQuiz() {
@@ -94,7 +94,6 @@ function startQuiz() {
    
 }
 
-
 function showQuestion() {
     resetState();
     startTimer();
@@ -102,7 +101,7 @@ function showQuestion() {
     let currentQuestion = questions[currentQuestionIndex];
     questionNo = currentQuestionIndex + 1;
 
-    questionElement.innerHTML = questionNo + " .  " + currentQuestion.question;
+    questionElement.innerHTML =  currentQuestion.question;
 
     currentQuestion.answers.forEach(answer => {
         const button = document.createElement("button");
@@ -215,11 +214,12 @@ function showScore() {
 
 function progressing() {
     const progressBar = document.getElementsByClassName("progress-bar")[0];
-
     
     let progressPercentage =  (questionNo * 100) / questions.length;
-
     progressBar.style.setProperty("--wid", progressPercentage);
+
+    let questnumElement = document.getElementById("questnum")
+    questnumElement.innerHTML = questionNo + " /" +questions.length
 }
 
 

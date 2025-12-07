@@ -8,12 +8,11 @@ margin:0%;
 .timer-container {
     text-align: right;               
     font-weight: bold;
-    font-size: 12rem;
     color: #a80239;
     background: none;                
     float: right;                    
-    margin-right: 0.7em;
-    margin-top: -0.9em;
+    margin-right: 5%;
+    margin-top: -8%;
     padding: 0.2em 0.4em;            
 }
 #time-left {
@@ -56,9 +55,10 @@ margin:0%;
   cursor: pointer;
 }
 .app {
+  position: relative;
     background: #f5c6ea;
     width: 100%;
-    max-width: 800px;
+    max-width: 65%;
     justify-content: center;
     border-radius: 10px;
     margin: 10px auto;
@@ -95,9 +95,28 @@ margin:0%;
     border-color: #d73131;
 }
 
+
+.Next-btn {
+    background-color: rgb(228, 99, 228); 
+    color: white;                        
+    border: none;
+    padding: 8px 16px;
+    border-radius: 6px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    display: block;      
+    width: fit-content;  
+    margin:  auto;      
+    padding: 8px 16px;
+}
+.Next-btn:hover {
+  background-color: rgb(200, 80, 200); 
+}
+
 .progress-bar{
   position: relative;
-    width: 800px;
+    width: 60%;
     height: 2.5em;
     background-color: #e1f6c1;
     border: 3px solid rgb(226, 122, 218);
@@ -109,14 +128,26 @@ content : attr(data-label);
 background-color: rgb(110, 255, 110);
 align-items: center;
 position: absolute;
-left:2px;
+left:0.1em;
+right:0.1em;
 top: 0.1em;
 bottom: 0.1em;
 width : calc(var(--wid, 0) * 1%);
-min-width: 1em;
+min-width: calc(var(--wid, 0) * 1%);
 max-width: 100%;
-border-radius: 15px  ;
+border-radius: 15px;
 padding: 1px 0px;
 }
+
+#questnum {
+  position: absolute;
+  font-size: 20px;
+  color: #333;
+  top: -50%;
+  background: none;
+  width: 10%;
+  left: 50%;
+}
+
 
 
