@@ -6,16 +6,24 @@ margin:0%;
 }
 
 .timer-container {
-    text-align: right;
+    text-align: right;               
     font-weight: bold;
     font-size: 12rem;
     color: #a80239;
-    background: null;
-    display: inline-block;
-    float: right;
-    margin-right: 1.2em;
-    margin-top: -0.6em;
+    background: none;                
+    float: right;                    
+    margin-right: 0.7em;
+    margin-top: -0.9em;
+    padding: 0.2em 0.4em;            
 }
+#time-left {
+  font-size: 12rem;
+  font-weight: bold;
+  color: #bce6fe; 
+  -webkit-text-stroke: 3px rgb(22, 34, 36); 
+}
+
+
 
 .header-container {
   display: flex;
@@ -53,7 +61,7 @@ margin:0%;
     max-width: 800px;
     justify-content: center;
     border-radius: 10px;
-    margin: 100px auto;
+    margin: 10px auto;
     padding: 30px;
     text-align: center;
     height: 450px;

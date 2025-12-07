@@ -131,7 +131,7 @@ function resetState() {
 }
 
 function startTimer() {
-    timeLeft = 10;
+    timeLeft = 9;
     if(timeText) timeText.innerHTML = timeLeft;
 
     timer = setInterval(() => {
