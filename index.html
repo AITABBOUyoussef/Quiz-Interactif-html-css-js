@@ -8,28 +8,27 @@
 </head>
 <body>
 
-    <header>
-  <div class="header-container">
-    <div class="logo">SuperQuiz</div>
-    <button class="signup-btn">Sign Up</button>
-  </div>
-  
-</header>
- <div class ="progress-bar" data-label="prorgress..." style = "--wid: 0">
-
- <h2 id="questnum" class = "questnum"></h2>
- </div>
-
-         <div class="timer-container">
-             <span id="time-left">9</span> </div>
-
 <div class="app">
+    <div class="app-container">
+    <div class="sidebar">
+        <h3>Catégories</h3>
+        <button class="category-button selected" onclick="pickCategory('maths', this)">Mathématiques</button>
+        <button class="category-button" onclick="pickCategory('culture', this)">Culture</button>
+        <button class="category-button" onclick="pickCategory('sciences', this)">Sciences</button>
+    </div>
+
+    <div class="quiz-container">
+    <h1>Quiz Interactif</h1>
 
     <div class="quiz">
-        <h2 id="question" style = "font-size: 30px">....</h2>
 
-        <div id="answer-buttons">
+        <div class="timer-container">
+            Temps restant : <span id="time-left">10</span>s
         </div>
+
+        <h2 id="question">....</h2>
+
+        <div id="answer-buttons"></div>
 
         <button id="next-btn" class = "Next-btn">Suivant</button>
     </div>

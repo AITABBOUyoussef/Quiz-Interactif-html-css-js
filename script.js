@@ -3,81 +3,54 @@ const answerButtons = document.getElementById("answer-buttons");
 const nextButton = document.getElementById("next-btn");
 const timeText = document.getElementById("time-left");
 
-const questions = [
-    {
-        question: "2+2=?",
-        answers: [
-            { text: "4", correct: true },
-            { text: "0", correct: false },
-            { text: "6", correct: false }
-        ]
-    },
-    {
-            question: "2*2=?",
-            answers: [
-                { text: "4", correct: true },
-                { text: "8", correct: false },
-            ]
-        },
-        {
-                question: "20+8=?",
-                answers: [
-                    { text: "4", correct: false },
-                    { text: "28", correct: true },
-                ]
-            },
-            {
-                    question: "3*5=?",
-                    answers: [
-                        { text: "15", correct: true },
-                        { text: "6", correct: false },
-                    ]
-                },
-                {
-                        question: "2+5=?",
-                        answers: [
-                            { text: "7", correct: true },
-                            { text: "6", correct: false },
-                        ]
-                    },
-                    {
-                            question: "4+5=?",
-                            answers: [
-                                { text: "8", correct: false },
-                                { text: "9", correct: true },
-                            ]
-                        },
-                        {
-                                question: "6+8=?",
-                                answers: [
-                                    { text: "14", correct: true },
-                                    { text: "20", correct: false },
-                                ]
-                            },
-                            {
-                                    question: "5*2=?",
-                                    answers: [
-                                        { text: "4", correct: false },
-                                        { text: "10", correct: true },
-                                    ]
-                                },
-                                {
-                                        question: "1+2=?",
-                                        answers: [
-                                            { text: "3", correct: true },
-                                            { text: "0", correct: false },
-                                        ]
-                                    },
-                                    {
-                                            question: "3+5=?",
-                                            answers: [
-                                                { text: "8", correct: true },
-                                                { text: "5", correct: false },
-                                            ]
-                                        },
+let currentCategory = "";
+let questions = [];
+let totalScore = 0;
+
+const questionsParCategory = {
+    maths: [
+        { question: "2+2=?", answers: [{ text: "4", correct: true }, { text: "0", correct: false }] },
+        { question: "2*2=?", answers: [{ text: "4", correct: true }, { text: "8", correct: false }] },
+        { question: "20+8=?", answers: [{ text: "28", correct: true }, { text: "4", correct: false }] },
+        { question: "3*5=?", answers: [{ text: "15", correct: true }, { text: "6", correct: false }] },
+        { question: "2+5=?", answers: [{ text: "7", correct: true }, { text: "6", correct: false }] },
+    ],
+
+    culture: [
+        { question: "Qui a peint La Joconde ?", answers: [
+            { text: "Leonardo da Vinci", correct: true },
+            { text: "Picasso", correct: false }
+        ]},
+        { question: "Capitale de l'Espagne ?", answers: [
+            { text: "Madrid", correct: true },
+            { text: "Barcelona", correct: false }
+        ]},
+    ],
+
+    sciences: [
+        { question: "La planète la plus proche du soleil ?", answers: [
+            { text: "Mercure", correct: true },
+            { text: "Mars", correct: false }
+        ]},
+        { question: "L’eau bout à ?", answers: [
+            { text: "100°C", correct: true },
+            { text: "80°C", correct: false }
+        ]},
+    ]
+};
 
 
-];
+function pickCategory(cat, btn) {
+    currentCategory = cat;
+
+  
+    document.querySelectorAll(".category-button").forEach(b => b.classList.remove("selected"));
+    btn.classList.add("selected");
+
+    questions = questionsParCategory[currentCategory];
+
+    startQuiz();
+}
 
 let currentQuestionIndex = 0;
 let score = 0;
@@ -88,8 +61,11 @@ let questionNo = 0
 function startQuiz() {
     currentQuestionIndex = 0;
     score = 0;
+    document.getElementById("total-score").innerText = 0;
     nextButton.innerHTML = "Suivant";
-    nextButton.onclick = null;
+
+       nextButton.removeEventListener("click", startQuiz);
+    nextButton.addEventListener("click", handleNextClick);
     showQuestion();
    
 }
@@ -101,25 +77,26 @@ function showQuestion() {
     let currentQuestion = questions[currentQuestionIndex];
     questionNo = currentQuestionIndex + 1;
 
-    questionElement.innerHTML =  currentQuestion.question;
+    questionElement.innerHTML = (currentQuestionIndex + 1) + ". " + currentQuestion.question;
 
     currentQuestion.answers.forEach(answer => {
         const button = document.createElement("button");
         button.innerHTML = answer.text;
         button.classList.add("btn");
-        answerButtons.appendChild(button);
 
         if(answer.correct) {
-            button.dataset.correct = answer.correct;
+            button.dataset.correct = "true";
         }
 
         button.addEventListener("click", selectAnswer);
         progressing()
+           answerButtons.appendChild(button);
     });
 }
 
 
 function resetState() {
+      clearInterval(timer);
     nextButton.style.display = "none";
     
     clearInterval(timer);
@@ -135,7 +112,7 @@ function startTimer() {
 
     timer = setInterval(() => {
         timeLeft--;
-        if(timeText) timeText.innerHTML = timeLeft;
+        timeText.innerHTML = timeLeft;
 
         if (timeLeft <= 0) {
             currentQuestionIndex++
@@ -166,8 +143,7 @@ function selectAnswer(e) {
     if(isCorrect) {
         selectedBtn.classList.add("correct");
         score++;
-        
-        
+        document.getElementById("total-score").innerText = score;
     } else {
         selectedBtn.classList.add("incorrect");
         
@@ -186,15 +162,17 @@ function selectAnswer(e) {
 }
 
 
-nextButton.addEventListener("click", () => {
-    if(nextButton.innerHTML === "Recommencer") return;
+function handleNextClick() {
     currentQuestionIndex++;
-    if(currentQuestionIndex < questions.length) {
+
+    if (currentQuestionIndex < questions.length) {
         showQuestion();
     } else {
         showScore();
     }
-});
+}
+
+nextButton.addEventListener("click", handleNextClick);
 
 
 function showScore() {
@@ -207,7 +185,8 @@ function showScore() {
     nextButton.style.display = "block";
 
 
-    nextButton.onclick = startQuiz;
+    nextButton.removeEventListener("click", handleNextClick);
+    nextButton.addEventListener("click", startQuiz);
 }
 
 
@@ -227,3 +206,5 @@ function progressing() {
 
 startQuiz();
 
+questionElement.innerHTML = "Choisissez une catégorie";
+timeText.innerHTML = "--";

@@ -1,81 +1,44 @@
-*, *::before, *::after {
-  box-sizing: border-box;
-}
-.body{
-margin:0%;
-}
-
 .timer-container {
-    text-align: right;               
+    text-align: right;
     font-weight: bold;
-    color: #a80239;
-    background: none;                
-    float: right;                    
-    margin-right: 5%;
-    margin-top: -8%;
-    padding: 0.2em 0.4em;            
-}
-#time-left {
-  font-size: 12rem;
-  font-weight: bold;
-  color: #bce6fe; 
-  -webkit-text-stroke: 3px rgb(22, 34, 36); 
+    font-size: 1.2rem;
+    color: #333;
+    margin-bottom: 10px;
 }
 
-
-
-.header-container {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 10px 5%;
-  background-color: #ece4e4;
-  border-bottom: 1px solid #ddd;
-}
-.signup-btn {
-  background-color: rgb(228, 99, 228); 
-  color: white;                        
-  border: none;
-  padding: 8px 16px;
-  border-radius: 6px;
-  font-size: 1rem;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-.signup-btn:hover {
-  background-color: rgb(200, 80, 200); 
-}
-.logo {
-  color: rgb(228, 99, 228);     
-  font-weight: 600;
-  font-size: 1.5rem;
-}
-.logo:hover {
-  color: rgb(200, 80, 200); 
-  cursor: pointer;
-}
 .app {
-  position: relative;
-    background: #f5c6ea;
-    width: 100%;
-    max-width: 65%;
-    justify-content: center;
+    background: #fff;
+    width: 90%;
+    max-width: 600px;
+    margin: 100px auto;
     border-radius: 10px;
-    margin: 10px auto;
     padding: 30px;
     text-align: center;
     height: 450px;
 }
 
+
+.timer-container {
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+
+.totalscore {
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+
 .btn {
-    background: #ffffff;
+    background: #fff;
     width: 100%;
-    border: 2px solid #222;
+    border: 1px solid #222;
     padding: 10px;
     margin: 10px 0;
     text-align: left;
     cursor: pointer;
-    transition: 1s;
+    transition: 0.3s;
 }
 
 .btn:hover:not([
@@ -84,19 +47,29 @@ margin:0%;
     color: #040000;
 }
 
-
 .correct {
     background: #9aeabc !important;
-    border-color: #9aeabc;
 }
 
 .incorrect {
-    background: #e96262 !important;
-    border-color: #d73131;
+    background: #ff9393 !important;
+    border-color: #ff9393;
 }
+@media (max-width: 600px) {
+    .app-container {
+        flex-direction: column;
+    }
 
+    .sidebar {
+        width: 100%;
+        text-align: center;
+    }
 
-.Next-btn {
+    .category-button {
+        text-align: center;
+    }
+}
+    .Next-btn {
     background-color: rgb(228, 99, 228); 
     color: white;                        
     border: none;
@@ -138,16 +111,3 @@ max-width: 100%;
 border-radius: 15px;
 padding: 1px 0px;
 }
-
-#questnum {
-  position: absolute;
-  font-size: 20px;
-  color: #333;
-  top: -50%;
-  background: none;
-  width: 10%;
-  left: 50%;
-}
-
-
-
