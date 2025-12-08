@@ -1,50 +1,88 @@
-.timer-container {
-    text-align: right;
-    font-weight: bold;
-    font-size: 1.2rem;
-    color: #333;
-    margin-bottom: 10px;
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f4f4f4;
 }
 
-.app {
+.app-container {
+
+    display: flex;
+    max-width: 900px;
+    margin: 50px auto;
     background: #fff;
-    width: 90%;
-    max-width: 600px;
-    margin: 100px auto;
     border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+}
+
+.sidebar {
+    width: 150px;
+    background: #333;
+    color: white;
+    padding: 20px;
+}
+
+.category-button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    background: #555; 
+    border: none;
+    color: white;
+    cursor: pointer;
+    border-radius: 5px;
+    text-align: left;
+}
+
+.category-button.selected {
+    background: #222;
+}
+
+.category-button:hover {
+    background: #444;
+}
+
+.quiz-container {
+    position: relative;
+    flex: 1;
     padding: 30px;
     text-align: center;
-    height: 450px;
 }
 
-
-.timer-container {
-    font-weight: bold;
-    margin-bottom: 10px;
+.timer-container{
+    position: absolute;
+    top: 5%;
+    right: 5%;
+    background-color: transparent;
+    display: flex;
 }
 
 
 .totalscore {
     font-weight: bold;
-    margin-bottom: 20px;
+    margin-bottom: 15px;
 }
 
+#answer-buttons {
+    margin-top: 20px;
+}
 
 .btn {
-    background: #fff;
+    display: block;
     width: 100%;
-    border: 1px solid #222;
     padding: 10px;
-    margin: 10px 0;
-    text-align: left;
+    margin: 8px 0;
+    border: 1px solid #222;
+    border-radius: 5px;
+    background: #fff;
     cursor: pointer;
-    transition: 0.3s;
+    text-align: left;
 }
 
-.btn:hover:not([
-  disabled]) {
-    background: #df5f5f;
-    color: #040000;
+.btn:hover:not([disabled]) {
+    background: #222;
+    color: #fff;
 }
 
 .correct {
@@ -53,11 +91,37 @@
 
 .incorrect {
     background: #ff9393 !important;
-    border-color: #ff9393;
 }
+
+
+.progress-bar {
+    position: relative;
+    width: 60%;
+    height: 2.3em;
+    background-color: #e1f6c1;
+    border: 3px solid rgb(226, 122, 218);
+    border-radius: 3em;
+    margin: 20px auto 35px auto;
+}
+
+.progress-bar::before {
+    content: attr(data-label);
+    background-color: rgb(180, 50, 152);
+    position: absolute;
+    left: 0.15em;
+    top: 0.6em;
+    bottom: 0.15em;
+    width: calc(var(--width, 0) * 1%);
+    max-width: 100%;
+    border-radius: 2em;
+    display: flex;
+}
+
+
 @media (max-width: 600px) {
     .app-container {
         flex-direction: column;
+        margin-top: 20px;
     }
 
     .sidebar {
@@ -68,46 +132,8 @@
     .category-button {
         text-align: center;
     }
-}
-    .Next-btn {
-    background-color: rgb(228, 99, 228); 
-    color: white;                        
-    border: none;
-    padding: 8px 16px;
-    border-radius: 6px;
-    font-size: 1rem;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    display: block;      
-    width: fit-content;  
-    margin:  auto;      
-    padding: 8px 16px;
-}
-.Next-btn:hover {
-  background-color: rgb(200, 80, 200); 
-}
 
-.progress-bar{
-  position: relative;
-    width: 60%;
-    height: 2.5em;
-    background-color: #e1f6c1;
-    border: 3px solid rgb(226, 122, 218);
-    border-radius: 3em;
-    margin: 40px auto;
-}
-.progress-bar::before{
-content : attr(data-label);
-background-color: rgb(110, 255, 110);
-align-items: center;
-position: absolute;
-left:0.1em;
-right:0.1em;
-top: 0.1em;
-bottom: 0.1em;
-width : calc(var(--wid, 0) * 1%);
-min-width: calc(var(--wid, 0) * 1%);
-max-width: 100%;
-border-radius: 15px;
-padding: 1px 0px;
+    .progress-bar {
+        width: 80%;
+    }
 }

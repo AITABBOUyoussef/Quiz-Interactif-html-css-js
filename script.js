@@ -55,8 +55,7 @@ function pickCategory(cat, btn) {
 let currentQuestionIndex = 0;
 let score = 0;
 let timer;
-let timeLeft = 9;
-let questionNo = 0
+let timeLeft = 10;
 
 function startQuiz() {
     currentQuestionIndex = 0;
@@ -67,15 +66,15 @@ function startQuiz() {
        nextButton.removeEventListener("click", startQuiz);
     nextButton.addEventListener("click", handleNextClick);
     showQuestion();
-   
 }
+
 
 function showQuestion() {
     resetState();
     startTimer();
 
     let currentQuestion = questions[currentQuestionIndex];
-    questionNo = currentQuestionIndex + 1;
+    let questionNo = currentQuestionIndex + 1;
 
     questionElement.innerHTML = (currentQuestionIndex + 1) + ". " + currentQuestion.question;
 
@@ -89,7 +88,6 @@ function showQuestion() {
         }
 
         button.addEventListener("click", selectAnswer);
-        progressing()
            answerButtons.appendChild(button);
     });
 }
@@ -98,8 +96,6 @@ function showQuestion() {
 function resetState() {
       clearInterval(timer);
     nextButton.style.display = "none";
-    
-    clearInterval(timer);
 
     while(answerButtons.firstChild) {
         answerButtons.removeChild(answerButtons.firstChild);
@@ -107,18 +103,16 @@ function resetState() {
 }
 
 function startTimer() {
-    timeLeft = 9;
-    if(timeText) timeText.innerHTML = timeLeft;
+    timeLeft = 10;
+    timeText.innerHTML = timeLeft;
 
     timer = setInterval(() => {
         timeLeft--;
         timeText.innerHTML = timeLeft;
 
         if (timeLeft <= 0) {
-            currentQuestionIndex++
             clearInterval(timer);
             handleTimeOut();
-            
         }
     }, 1000);
 }
@@ -131,12 +125,11 @@ function handleTimeOut() {
         button.disabled = true;
     });
     nextButton.style.display = "block";
-    
 }
 
 function selectAnswer(e) {
     clearInterval(timer);
-    
+
     const selectedBtn = e.target;
     const isCorrect = selectedBtn.dataset.correct === "true";
 
@@ -146,9 +139,7 @@ function selectAnswer(e) {
         document.getElementById("total-score").innerText = score;
     } else {
         selectedBtn.classList.add("incorrect");
-        
     }
-
 
     Array.from(answerButtons.children).forEach(button => {
         if(button.dataset.correct === "true") {
@@ -158,7 +149,6 @@ function selectAnswer(e) {
     });
 
     nextButton.style.display = "block";
-    
 }
 
 
@@ -190,21 +180,11 @@ function showScore() {
 }
 
 
-
-function progressing() {
-    const progressBar = document.getElementsByClassName("progress-bar")[0];
-    
-    let progressPercentage =  (questionNo * 100) / questions.length;
-    progressBar.style.setProperty("--wid", progressPercentage);
-
-    let questnumElement = document.getElementById("questnum")
-    questnumElement.innerHTML = questionNo + " /" +questions.length
-}
-
-
-
-
-startQuiz();
-
 questionElement.innerHTML = "Choisissez une catégorie";
 timeText.innerHTML = "--";
+
+function progressbar(){
+    let progress = getElementByClassName("progress-bar")
+    
+     
+}
