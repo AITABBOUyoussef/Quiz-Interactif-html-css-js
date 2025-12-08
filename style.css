@@ -1,111 +1,194 @@
+/* Importina police zwina mn Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
 
 body {
     margin: 0;
-    font-family: Arial, sans-serif;
-    background: #f4f4f4;
+    font-family: 'Poppins', sans-serif; /* Police moderne */
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); /* Khalfiya degradée */
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #333;
 }
 
 .app-container {
     display: flex;
-    max-width: 900px;
-    margin: 50px auto;
-    background: #fff;
-    border-radius: 10px;
+    width: 90vw; /* 90% mn l'écran f l3rd */
+    height: 90vh; /* 90% mn l'écran f toul */
+    max-width: 1400px; /* Bach maykbrch bzaf f les écrans kbar */
+    background: rgba(255, 255, 255, 0.95); /* Abyad chwiya transparant */
+    border-radius: 20px;
     overflow: hidden;
-    box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+    box-shadow: 0 20px 50px rgba(0,0,0,0.3); /* Dll kbir */
 }
 
+/* --- SIDEBAR --- */
 .sidebar {
-    width: 150px;
-    background: #333;
+    width: 250px; /* Zdna f l3rd bach yban hsn */
+    background: #2c3e50;
     color: white;
-    padding: 20px;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 2px 0 10px rgba(0,0,0,0.1);
 }
 
 .sidebar h3 {
     margin-top: 0;
-    margin-bottom: 15px;
-    font-size: 1.1rem;
+    margin-bottom: 30px;
+    font-size: 1.5rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    border-bottom: 2px solid #555;
+    padding-bottom: 10px;
 }
 
 .category-button {
     display: block;
     width: 100%;
-    padding: 10px;
-    margin-bottom: 10px;
-    background: #555; 
-    border: none;
-    color: white;
+    padding: 15px;
+    margin-bottom: 15px;
+    background: transparent;
+    border: 1px solid rgba(255,255,255,0.1);
+    color: #ddd;
     cursor: pointer;
-    border-radius: 5px;
+    border-radius: 10px;
     text-align: left;
-}
-
-.category-button.selected {
-    background: #222;
+    font-size: 1rem;
+    transition: all 0.3s ease; /* Animation mli katht souris */
 }
 
 .category-button:hover {
-    background: #444;
+    background: rgba(255,255,255,0.1);
+    transform: translateX(5px); /* Kayt7rk l limn chwiya */
+    color: white;
 }
 
+.category-button.selected {
+    background: #667eea; /* Nafs lon d l-background d body */
+    color: white;
+    border-color: #667eea;
+    font-weight: bold;
+    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+}
 
+/* --- CONTENU PRINCIPAL --- */
 .quiz-container {
-    flex: 1;
-    padding: 20px 30px;
-    text-align: center;
+    flex: 1; /* Kayakhod l-masaha li b9at */
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Center dakchi verticalement */
+    align-items: center;
+    background: #fdfdfd;
+    position: relative;
 }
 
+#question {
+    font-size: 1.8rem;
+    margin-bottom: 30px;
+    color: #2c3e50;
+    font-weight: 600;
+}
 
-.timer-container {
+.timer-container, .totalscore {
+    position: absolute;
+    top: 20px;
+    font-size: 1.1rem;
     font-weight: bold;
-    margin-bottom: 10px;
+    background: #eee;
+    padding: 8px 15px;
+    border-radius: 20px;
 }
 
+.timer-container { right: 20px; color: #e74c3c; }
+.totalscore { left: 20px; color: #27ae60; }
 
-.totalscore {
-    font-weight: bold;
-    margin-bottom: 20px;
+#answer-buttons {
+    width: 100%;
+    max-width: 600px;
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* 2 boutons f ster */
+    gap: 15px; /* L-faragh binathom */
 }
-
 
 .btn {
-    display: block;
-    width: 100%;
-    padding: 10px;
-    margin: 8px 0;
-    border: 1px solid #222;
-    border-radius: 5px;
-    background: #fff;
+    padding: 20px;
+    border: 2px solid #e0e0e0;
+    border-radius: 12px;
+    background: white;
     cursor: pointer;
-    text-align: left;
+    font-size: 1rem;
+    font-weight: 500;
+    transition: all 0.2s ease;
+    color: #444;
 }
 
 .btn:hover:not([disabled]) {
-    background: #222;
-    color: #fff;
+    background: #f0f0f0;
+    border-color: #bbb;
+    transform: translateY(-3px); /* Kaytl3 lfo9 chwiya */
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
 }
 
+/* Next Button Styling (ila kan 3ndk f HTML) */
+#next-btn {
+    margin-top: 30px;
+    padding: 12px 40px;
+    background: #2c3e50;
+    color: white;
+    border: none;
+    border-radius: 50px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: 0.3s;
+    display: none; /* Makhfy f lbdya */
+}
+
+#next-btn:hover {
+    background: #1a252f;
+    transform: scale(1.05);
+}
+
+/* --- FEEDBACK COLORS --- */
 .correct {
-    background: #9aeabc !important;
+    background: #2ecc71 !important;
+    color: white !important;
+    border-color: #2ecc71 !important;
 }
 
 .incorrect {
-    background: #ff9393 !important;
+    background: #e74c3c !important;
+    color: white !important;
+    border-color: #e74c3c !important;
 }
 
-
-@media (max-width: 600px) {
+/* --- RESPONSIVE (Mobile) --- */
+@media (max-width: 768px) {
     .app-container {
         flex-direction: column;
+        width: 100%;
+        height: 100%;
+        border-radius: 0;
     }
 
     .sidebar {
         width: 100%;
-        text-align: center;
+        padding: 15px;
+        flex-direction: row; /* Les catégories ywliw f ster wahed */
+        overflow-x: auto; /* Scroll horizontal ila kanu bzaf */
+        box-sizing: border-box;
     }
 
     .category-button {
-        text-align: center;
+        width: auto;
+        margin-right: 10px;
+        margin-bottom: 0;
+        white-space: nowrap;
+    }
+
+    #answer-buttons {
+        grid-template-columns: 1fr; /* Rej3hom wahd taht wahd f telephone */
     }
 }

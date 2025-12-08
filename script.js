@@ -3,7 +3,7 @@ const answerButtons = document.getElementById("answer-buttons");
 const nextButton = document.getElementById("next-btn");
 const timeText = document.getElementById("time-left");
 
-let currentCategory = "maths";
+let currentCategory = "";
 let questions = [];
 let totalScore = 0;
 
